@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Gols</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Calculadora de Gols (Últimos 5 Jogos + Confrontos Diretos)</h1>
+
+        <!-- ===== TIME DA CASA ===== -->
+        <div class="inputs">
+            <h2>Time da Casa</h2>
+            <div id="casa-jogos" class="jogos"></div>
+
+            <h2>Time Visitante</h2>
+            <div id="fora-jogos" class="jogos"></div>
+
+            <h2>Confronto Direto</h2>
+            <div id="confronto-jogos" class="jogos"></div>
+        </div>
+
+        <button id="calcular">Calcular Probabilidades</button>
+        <button id="limpar">Limpar</button>
+
+        <div id="resultado" class="resultado"></div>
+
+        <div class="grafico-container">
+            <canvas id="graficoGols"></canvas>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
