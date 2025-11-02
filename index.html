@@ -1,39 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Gols</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Palpites (Poisson) — Gols</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Calculadora de Gols (Últimos 5 Jogos + Confrontos Diretos)</h1>
+    <main class="container">
+        <h1>Gerador de Palpites — Poisson (Gols)</h1>
 
-        <!-- ===== TIME DA CASA ===== -->
-        <div class="inputs">
-            <h2>Time da Casa</h2>
-            <div id="casa-jogos" class="jogos"></div>
+        <section class="inputs">
+            <div class="team">
+                <h2>Time da Casa</h2>
+                <label>Média gols marcados (últ. 5 jogos)
+                    <input id="m_casa" type="number" step="0.01" value="">
+                </label>
+                <label>Média gols sofridos (últ. 5 jogos)
+                    <input id="s_casa" type="number" step="0.01" value="">
+                </label>
+            </div>
 
-            <h2>Time Visitante</h2>
-            <div id="fora-jogos" class="jogos"></div>
+            <div class="team">
+                <h2>Time Visitante</h2>
+                <label>Média gols marcados (últ. 5 jogos)
+                    <input id="m_visit" type="number" step="0.01" value="">
+                </label>
+                <label>Média gols sofridos (últ. 5 jogos)
+                    <input id="s_visit" type="number" step="0.01" value="">
+                </label>
+            </div>
 
-            <h2>Confronto Direto</h2>
-            <div id="confronto-jogos" class="jogos"></div>
-        </div>
+            <div class="actions">
+                <button id="exemplo">Preencher Exemplo</button>
+                <button id="gerar">Gerar Probabilidades</button>
+                <button id="limpar">Limpar</button>
+            </div>
+        </section>
 
-        <button id="calcular">Calcular Probabilidades</button>
-        <button id="limpar">Limpar</button>
+        <section class="results">
+            <h2>Resultados</h2>
+            <div id="res-summary" class="card">Preencha as médias e clique em Gerar.</div>
 
-        <div id="resultado" class="resultado"></div>
+            <div class="grid">
+                <div class="card">
+                    <h3>Probabilidades Principais</h3>
+                    <ul id="main-probs"></ul>
+                </div>
 
-        <div class="grafico-container">
-            <canvas id="graficoGols"></canvas>
-        </div>
-    </div>
+                <div class="card">
+                    <h3>Distribuições (0–6+ gols)</h3>
+                    <div>
+                        <strong>Casa:</strong>
+                        <div id="dist-home" class="dist"></div>
+                    </div>
+                    <div>
+                        <strong>Visitante:</strong>
+                        <div id="dist-away" class="dist"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Matriz de probabilidades (Gols Casa × Visitante)</h3>
+                <div id="matrix" class="matrix"></div>
+            </div>
+        </section>
+
+        <footer>
+            <small>Modelo: Poisson — λ = (média ataque + média defesa oponente) / 2</small>
+        </footer>
+    </main>
 
     <script src="script.js"></script>
 </body>
